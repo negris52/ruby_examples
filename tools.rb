@@ -1,41 +1,30 @@
 module Tools
-  ​ def treeBase(var, width, filePath)
+  def treeBase(var, width, tempstr)
     for i in 1..var
-      File.open(filePath, "a") do |file|
-        file.puts " " * (width / 2) + "ТTTTT"
-      end
+      tempstr += " " * (width / 2) + "ТTTTT"
+      tempstr += "\n"
     end
+    return tempstr
   end
-  def fillCurrentFloor(branchCount, width, count, filePath)
-    File.open(filePath, "a") do |file|
-      file.print " " * ((width - branchCount + 5) / 2)
-    end
+
+  def fillCurrentFloor(branchCount, width, count, tempstr)
+    tempstr += " " * ((width - branchCount + 5) / 2)
     if branchCount > 1
       if count % 2 == 0
-        File.open(filePath, "a") do |file|
-          file.print "@"
-        end
-        File.open(filePath, "a") do |file|
-          file.puts "*" * branchCount
-        end
+        tempstr += "@"
+        tempstr += "*" * branchCount
+        tempstr += "\n"
       else
-        File.open(filePath, "a") do |file|
-          file.print "*" * branchCount
-        end
-        File.open(filePath, "a") do |file|
-          file.puts "@"
-        end
+        tempstr += "*" * branchCount
+        tempstr += "@"
+        tempstr += "\n"
       end
     else
-      File.open(filePath, "a") do |file|
-        file.puts "W" * branchCount
-      end
-      File.open(filePath, "a") do |file|
-        file.print " " * ((width - branchCount + 5) / 2)
-      end
-      File.open(filePath, "a") do |file|
-        file.puts "*" * branchCount
-      end
+      tempstr += "W" * branchCount
+      tempstr += "\n"
+      tempstr += " " * ((width - branchCount + 5) / 2)
+      tempstr += "*" * branchCount
+      tempstr += "\n"
     end
   end
 end
